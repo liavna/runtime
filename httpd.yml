@@ -10,15 +10,6 @@ spec:
     - name: cntr-httpd      # name of the container that will reside in the pod
       image: httpd:latest      # using the official apache image from docker hub, along with a tag
       ports:                # this bit is purely for informational purposes only and can be omitted.
-        - containerPort: 8080   # what port the container will be listening on
- kind: Service
-metadata:
-  name: pod-httpd
-  labels:
-    run: cntr-httpd
-spec:
-  ports:
-  - port: 80
-    protocol: TCP
-  selector:
-    run: cntr-httpd
+        - protocol: TCP
+        - port: 80
+        -targetPort: 8080  # what port the container will be listening on
