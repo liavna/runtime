@@ -3,13 +3,11 @@ kind: Service
 metadata:
   name: httpd-service
 spec:
-  type: ClusterIP
-  # Uncomment the below line to create a Headless Service
-  # clusterIP: None
+  type: NodePort
   selector:
     app: apache_webserve
-    department: sales
+    department: engineering
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 8080
+    targetPort: 50000
