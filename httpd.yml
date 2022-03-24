@@ -4,7 +4,6 @@ kind: Pod           # type of object that's defined in this file
 metadata:
   name: pod-httpdnew   # the name displayed in the first column of 'kubectl get pods'
   labels:
-  app.kubernetes.io/name: load-balancer-example
   app: apache_webserver  # this tag is added to help this object to link to the service object.
 spec:
   containers:
