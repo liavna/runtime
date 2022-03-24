@@ -1,4 +1,4 @@
--
+---
 apiVersion: v1      # see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/
 kind: Pod           # type of object that's defined in this file
 metadata:
