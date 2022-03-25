@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: training-container
-        image: training:1.0
+        image: httpd:latest
         ports:
         - containerPort: 80
 ---
