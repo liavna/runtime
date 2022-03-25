@@ -1,37 +1,30 @@
-apiVersion: apps/v1
+apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: octopus-deployment
-  labels:
-    app: web
+  name: demo
+  namespace: default
 spec:
+  replicas: 1
+  revisionHistoryLimit: 1
   selector:
     matchLabels:
-      octopusexport: OctopusExport
-  replicas: 1
-  strategy:
-    type: RollingUpdate
+      app: nginx
+      env: staging
   template:
     metadata:
       labels:
-        app: web
-        octopusexport: OctopusExport
+        app: nginx
+        env: staging
+      namespace: default
     spec:
-      hostNetwork: true
       containers:
-        - name: nginx
-          image: nginx
-          ports:
-            - containerPort: 80
-      affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              podAffinityTerm:
-                labelSelector:
-                  matchExpressions:
-                    - key: app
-                      operator: In
-                      values:
-                        - web
-                topologyKey: kubernetes.io/hostname
+      - image: nginx
+        imagePullPolicy: IfNotPresent
+        name: demo
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 0
