@@ -1,13 +1,35 @@
----
-apiVersion: v1      # see https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/
-kind: Pod           # type of object that's defined in this file
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: pod-httpd   # the name displayed in the first column of 'kubectl get pods'
-  labels:
-    app: apache_webserver  # this tag is added to help this object to link to the service object.
+  name: training-deployment
 spec:
-  containers:
-    - name: cntr-httpd      # name of the container that will reside in the pod
-      image: httpd:latest      # using the official apache image from docker hub, along with a tag
-      ports:                # this bit is purely for informational purposes only and can be omitted.
-         - containerPort: 80
+  selector:
+    matchLabels:
+      app: training
+      version: v1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: training
+        version: v1
+    spec:
+      containers:
+      - name: training-container
+        image: training:1.0
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+apiVersion: v1
+metadata:
+  name: training-service
+spec:
+  selector:
+    app: training
+  type: ClusterIP
+  ports:
+    - name: training-port
+      port: 8080
+      targetPort: 80
