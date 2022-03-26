@@ -11,14 +11,16 @@ spec:
         
         
 ---
-kind: Service
+
 apiVersion: v1
+kind: Service
 metadata:
-  name: httpd
+  name: httpd-service
 spec:
-  type: NodePort
-  ports:
-    - port: 8086
-      nodePort: 30000
   selector:
-    name: httpd
+    app: httpd
+  ports:
+    - protocol: TCP
+      name: httpd
+      port: 6379
+      targetPort: 6379
