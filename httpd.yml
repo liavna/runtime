@@ -1,26 +1,26 @@
 apiVersion: v1
 kind: Deployment
 metadata:
-  name: demo
+  name: tetst
   namespace: default
 spec:
   replicas: 1
   revisionHistoryLimit: 1
   selector:
     matchLabels:
-      app: nginx
-      env: staging
+      app: htpd
+      env: Deployment
   template:
     metadata:
       labels:
-        app: nginx
-        env: staging
+        app: htpd
+        env: Deployment
       namespace: default
     spec:
       containers:
-      - image: nginx
+      - image: httpd:latest
         imagePullPolicy: IfNotPresent
-        name: demo
+        name: httpd
         ports:
         - containerPort: 80
           name: http
