@@ -2,26 +2,23 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: httpd
-  labels:
-    app.kubernetes.io/name: proxy
 spec:
   containers:
   - name: httpd
     image: httpd:latest
     ports:
       - containerPort: 80
-        name: http-web-svc
+        
         
 ---
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
-  name: httpd-service
+  name: httpd
 spec:
-  selector:
-    app.kubernetes.io/name: proxy
+  type: NodePort
   ports:
-  - name: name-of-service-port
-    protocol: TCP
-    port: 80
-    targetPort: http-web-svc
+    - port: 8086
+      nodePort: 30000
+  selector:
+    name: httpd
