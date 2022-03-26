@@ -9,12 +9,10 @@ spec:
   selector:
     matchLabels:
       app: htpd
-      env: Deployment
   template:
     metadata:
       labels:
         app: htpd
-        env: Deployment
       namespace: default
     spec:
       containers:
