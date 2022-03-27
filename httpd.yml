@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Deployment
 metadata:
   labels:
-  name:httpd
+  name: httpd
 spec:
   replicas: 2
   selector:
