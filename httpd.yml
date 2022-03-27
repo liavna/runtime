@@ -3,24 +3,23 @@ kind: Deployment
 metadata:
   name: httpd
   labels:
-    name: httpd
+    app: web
 spec:
-  containers:
-      replicas: 5
-    - name: httpd
-      image: httpd:latest
-      ports:
-        - containerPort: 8086
----
-
-kind: Service
-apiVersion: v1
-metadata:
-  name: httpd
-spec:
-  type: NodePort
-  ports:
-    - port: 8086
-      nodePort: 30000
   selector:
-    name: httpd
+    matchLabels:
+      octopusexport: OctopusExport
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: web
+        octopusexport: OctopusExport
+    spec:
+      hostNetwork: true
+      containers:
+        - name: httpd
+          image: httpd:latest
+          ports:
+            - containerPort: 80
