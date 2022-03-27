@@ -7,17 +7,17 @@ RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get -y install \
     apache2 \
-    php7.0 \
-    php7.0-cli \
+    php7.2 \
+    php7.2-cli \
     libapache2-mod-php7.2 \
-    php7.0-gd \
-    php7.0-curl \
-    php7.0-json \
-    php7.0-mbstring \
-    php7.0-mysql \
-    php7.0-xml \
-    php7.0-xsl \
-    php7.0-zip
+    php7.2-gd \
+    php7.2-curl \
+    php7.2-json \
+    php7.2-mbstring \
+    php7.2-mysql \
+    php7.2-xml \
+    php7.2-xsl \
+    php7.2-zip
 
 # Enable apache mods.
 RUN a2enmod php7.2
