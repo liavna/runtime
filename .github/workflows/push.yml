@@ -17,7 +17,7 @@ jobs:
       uses: steebchen/kubectl@v2.0.0
       with: # defaults to latest kubectl binary version
         config: ${{ secrets.KUBE_CONFIG_DATA }}
-        command: expose deployment httpd --name=loadbalancer --port=80 --target-port=8080 --type=LoadBalancer
+        command: expose deployment http --name=loadbalancer --port=80 --target-port=8080 --type=LoadBalancer
       
       
       
