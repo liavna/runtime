@@ -33,8 +33,5 @@ spec:
       - name: helloworld
         image: httpd:latest
         imagePullPolicy: IfNotPresent
-        args:
-        # Address for the app to listen on
-        - localhost:8000
         ports:
         - containerPort: 8000
