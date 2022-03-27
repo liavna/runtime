@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: httpd
-        image: my-image-name:$(date +%s)
+        image: my-image-name:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8000
