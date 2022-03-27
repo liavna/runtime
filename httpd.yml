@@ -25,6 +25,4 @@ spec:
         - containerPort: 80
           name: http
           protocol: TCP
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      terminationGracePeriodSeconds: 0
+
