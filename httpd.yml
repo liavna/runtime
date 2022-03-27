@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: htpd
+        app: httpd
     spec:
       containers:
       - name: httpd
