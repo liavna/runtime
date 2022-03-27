@@ -11,7 +11,7 @@ spec:
       ports:
         - containerPort: 8086
 
-___
+- - - 
 
 kind: Service
 apiVersion: v1
