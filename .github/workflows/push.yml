@@ -7,19 +7,26 @@ jobs:
     name: deploy to cluster
     runs-on: self-hosted
     steps:
-    
+    - name: Build the Docker image
+      run: docker build . --file ./Dockerfile --tag my-image-name:$(date +%s) --output type=local
     - uses: actions/checkout@master
     - name: deploy to cluster
       uses: steebchen/kubectl@v2.0.0
       with: # defaults to latest kubectl binary version
         config: ${{ secrets.KUBE_CONFIG_DATA }}
-        command: apply -f httpd.yml
+        command: create deployment --image=$docker_containe new_app
     - name: verify deployment
       uses: steebchen/kubectl@v2.0.0
       
       
       
-      
+      build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
       
        
 
