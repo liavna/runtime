@@ -1,40 +1,26 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
   name: httpd
-  namespace: default
   labels:
-    app: httpd
+    name: httpd
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: httpd
-  template:
-    metadata:
-      labels:
-        app: httpd
-      containers:
-      - name: httpd
-        image: httpd:latest
-        ports:
-        - name: http
-          containerPort: 80
-        imagePullPolicy: IfNotPresent
-      nodeSelector:
-        kubernetes.io/os: linux
----
-apiVersion: v1
+  containers:
+    - name: httpd
+      image: httpd:latest
+      ports:
+        - containerPort: 8086
+
+___
+
 kind: Service
+apiVersion: v1
 metadata:
-  name: htpd
-  namespace: default
-  labels:
-    app: httpd
+  name: httpd
 spec:
-  selector:
-    app: httpd
+  type: NodePort
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
+    - port: 8086
+      nodePort: 30000
+  selector:
+    name: httpd
