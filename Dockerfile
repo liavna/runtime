@@ -9,7 +9,7 @@ RUN apt-get update && \
     apache2 \
     php7.0 \
     php7.0-cli \
-    libapache2-mod-php7.0 \
+    libapache2-mod-php7.2 \
     php7.0-gd \
     php7.0-curl \
     php7.0-json \
