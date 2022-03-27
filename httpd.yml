@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: helloworld
+  name: httpd
   labels:
-    app: helloworld
+    app: httpd
 spec:
   ports:
   - name: http
@@ -16,22 +16,22 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: helloworld
+  name: httpd
   labels:
-    app: helloworld
+    app: httpd
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: helloworld
+      app: httpd
   template:
     metadata:
       labels:
-        app: helloworld
+        app: httpd
     spec:
       containers:
-      - name: helloworld
-        image: httpd:latest
+      - name: httpd
+        image: my-image-name:$(date +%s)
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8000
