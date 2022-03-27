@@ -6,6 +6,7 @@ metadata:
     name: httpd
 spec:
   containers:
+      replicas: 5
     - name: httpd
       image: httpd:latest
       ports:
