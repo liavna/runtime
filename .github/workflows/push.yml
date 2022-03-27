@@ -18,7 +18,7 @@ jobs:
       uses: steebchen/kubectl@v2.0.0
       with: # defaults to latest kubectl binary version
         config: ${{ secrets.KUBE_CONFIG_DATA }}
-        command: create deployment --image=$docker_containe httpd
+        command: create deployment --image=$docker_containe
     - name: verify deployment
       uses: steebchen/kubectl@v2.0.0
     
