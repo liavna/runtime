@@ -21,10 +21,6 @@ jobs:
         command: create deployment --image=$docker_containe new_app
     - name: verify deployment
       uses: steebchen/kubectl@v2.0.0
-       build:
-        runs-on: ubuntu-latest
-        steps:
-    - uses: actions/checkout@v2
     
       
        
