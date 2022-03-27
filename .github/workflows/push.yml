@@ -13,4 +13,15 @@ jobs:
         command: apply -f httpd.yml
     - name: verify deployment
       uses: steebchen/kubectl@v2.0.0
+    - name: add to LoadBalancer
+      uses: steebchen/kubectl@v2.0.0
+      with: # defaults to latest kubectl binary version
+        config: ${{ secrets.KUBE_CONFIG_DATA }}
+        command: expose deployment source-ip-app --name=loadbalancer --port=80 --target-port=8080 --type=LoadBalancer
+      
+      
+      
+      
+      
+      
 
