@@ -41,7 +41,7 @@ kind: Ingress
 metadata:
   name: minimal-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /httpd
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: httpd
   rules:
