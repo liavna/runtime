@@ -5,7 +5,7 @@ on:
     branches: [ dev ]
 name: deploy
 env:
- docker_container : my-image-name:$(date +%s)
+ docker_container : my-image-name:httpd
 jobs:
   deploy:
     name: deploy to cluster
