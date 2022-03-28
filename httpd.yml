@@ -15,9 +15,9 @@ spec:
         app: httpd
     spec:
       containers:
-      - name: httpd
-        image: httpd
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 9000
+       - name: httpd
+           image: httpd
+           imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9000
  
