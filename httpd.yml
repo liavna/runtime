@@ -35,4 +35,4 @@ spec:
     targetPort: httpd-svc
   selector:
     app: httpd
-    type: NodePort
+   -type: NodePort
