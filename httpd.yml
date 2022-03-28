@@ -1,37 +1,22 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: helloworld
-  labels:
-    app: helloworld
-spec:
-  ports:
-  - name: http
-    port: 8000
-    targetPort: 8000
-  selector:
-    app: helloworld
-  type: LoadBalancer
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: helloworld
-  labels:
-    app: helloworld
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: helloworld
-  template:
-    metadata:
-      labels:
-        app: helloworld
-    spec:
-      containers:
-      - name: helloworld
-        image: httpd:latest
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 8000
+name: cleanup-test
+on: [push]
+jobs:
+  check-bats-version:
+    runs-on: [ self-hosted ]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: npm install -g bats
+      - run: bats -v
+  clean-working-directory:
+    runs-on: [ self-hosted ]
+    needs: check-bats-version
+    steps:
+      - name: Clean working directory
+        shell: bash
+        run: |
+         cd $RUNNER_WORKSPACE
+         cd ..
+         rm -r *
