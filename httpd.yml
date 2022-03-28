@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: httpd
-        image: my-image-name:htpd
+        image: my-image-name:httpd
         ports:
         - containerPort: 80
