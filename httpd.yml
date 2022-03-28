@@ -4,15 +4,14 @@ metadata:
   name: httpd
   labels:
     hpecp.hpe.com/hpecp-internal-gateway: "true"
-    app: httpd
 spec:
   ports:
-  - name: httpd
-    port: 8080
-    targetPort: 9001
+  - name:httpd
+    port: 80
+    targetPort: 9000
   selector:
     app: httpd
-  type: NodePort
+type: NodePort
 ---
 apiVersion: apps/v1
 kind: Deployment
