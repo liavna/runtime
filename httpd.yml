@@ -34,7 +34,6 @@ spec:
     spec:
       containers:
       - name: httpd
-        image: httpd
-        imagePullPolicy: IfNotPresent
+        image: httpd:latest
         ports:
-        - containerPort: 80
+        - containerPort: 8086
