@@ -32,7 +32,7 @@ spec:
   ports:
   - name: httpd
     port: 8082
-    targetPort: 9000
+    targetPort: httpd-svc
   selector:
     app: httpd
     type: NodePort
