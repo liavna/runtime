@@ -31,9 +31,8 @@ metadata:
 spec:
   ports:
   - name: httpd
-    port: 80
+    port: 8082
     targetPort: 9000
   selector:
     app: httpd
     type: NodePort
----
