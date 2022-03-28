@@ -8,7 +8,6 @@ spec:
   ports:
   - name:httpd
     port: 80
-    targetPort: 9000
   selector:
     app: httpd
 type: NodePort
