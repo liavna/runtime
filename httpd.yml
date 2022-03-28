@@ -25,15 +25,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: springboot-app-svc
+  name: httpd-svc
   labels:
     hpecp.hpe.com/hpecp-internal-gateway: "true"
 spec:
   ports:
-  - name: prime-service
+  - name: httpd
     port: 80
     targetPort: 9000
   selector:
-    app: springboot-app
+    app: httpd
 type: NodePort
 ---
