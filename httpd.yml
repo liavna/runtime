@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: httpd
   labels:
+    hpecp.hpe.com/hpecp-internal-gateway: "true"
     app: httpd
 spec:
   ports:
