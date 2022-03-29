@@ -18,4 +18,4 @@ jobs:
         uses: steebchen/kubectl@v1.0.0
         with:
           config: '${{ secrets.KUBE_CONFIG_DATA }}'
-          command: create -f httpd.yml
+          command: apply -f httpd.yml
