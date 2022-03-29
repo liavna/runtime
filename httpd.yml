@@ -4,7 +4,7 @@ metadata:
   namespace: user2
   name: httpd
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: httpd
@@ -17,5 +17,4 @@ spec:
       - name: httpd
         image: httpd:latest
         ports:
-        - containerPort: 80 
-        
+        - containerPort: 80        
