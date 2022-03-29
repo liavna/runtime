@@ -14,11 +14,6 @@ jobs:
       - uses: actions/checkout@master
       - name: Build the Docker image
         run: 'docker build --tag my-image-name:httpd .'
-      - name: query cluster
-        uses: steebchen/kubectl@v1.0.0
-        with:
-          config: '${{ secrets.KUBE_CONFIG_DATA }}'
-          command: get all -A
       - name: deploy to cluster
         uses: steebchen/kubectl@v1.0.0
         with:
