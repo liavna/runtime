@@ -3,8 +3,6 @@ kind: Deployment
 metadata:
   namespace: user2
   name: httpd
-  labels:
-    app: httpd
 spec:
   replicas: 1
   selector:
