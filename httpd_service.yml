@@ -6,7 +6,7 @@ metadata:
     hpecp.hpe.com/hpecp-internal-gateway: "true"
 spec:
   ports:
-    - name: prime-service
+    - name: http
       port: 80
       targetPort: 9000
   selector:
