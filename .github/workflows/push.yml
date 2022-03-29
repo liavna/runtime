@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions-hub/kubectl@master
      env:
-       KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA}}
+       KUBE_CONFIG: ${{secrets.KUBE_CONFIG_DATA}}
      with:
        args: get pods
      
