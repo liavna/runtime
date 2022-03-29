@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: httpd-svc
   labels:
+  namespace: user2
     hpecp.hpe.com/hpecp-internal-gateway: "true"
 spec:
   ports:
