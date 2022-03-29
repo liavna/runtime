@@ -9,6 +9,10 @@ jobs:
     name: deploy to cluster
     runs-on: self-hosted
     steps:
+     -name: ls
+      run: |
+       pwd
+       ls
     - name: Build the Docker image
       run: docker build --tag my-image-name:httpd .
     - uses: actions/checkout@master
