@@ -1,13 +1,15 @@
+
 apiVersion: v1
 kind: Service
 metadata:
-  name: httpd-service
+  name: httpd-svc
+  labels:
+    hpecp.hpe.com/hpecp-internal-gateway: "true"
 spec:
-  type: NodePort
-  selector:
-    app: apache_webserve
-    department: engineering
   ports:
-  - protocol: TCP
+  - name: prime-service
     port: 80
-    targetPort: 8080
+    targetPort: 9000
+  selector:
+    app: httpd
+type: NodePort
