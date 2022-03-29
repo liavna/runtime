@@ -9,7 +9,7 @@ jobs:
     name: deploy to cluster
     runs-on: self-hosted
     steps:
-     -name: ls
+    - name: ls
       run: |
        pwd
        ls
