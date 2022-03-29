@@ -8,9 +8,9 @@
 name: deploy
 jobs:
   deploy:
-    #name: deploy to cluster
+    name: deploy to cluster
     #runs-on: self-hosted
-    #steps:
+    steps:
      # - uses: actions/checkout@master
       #- name: Build the Docker image
        # run: "docker build --tag my-image-name:httpd ."
