@@ -17,6 +17,4 @@ jobs:
       with: # defaults to latest kubectl binary version
         config: ${{ secrets.KUBE_CONFIG_DATA }}
         command: apply -f httpd.yml
-    - name: verify deployment
-      uses: steebchen/kubectl@v2.0.0
     
