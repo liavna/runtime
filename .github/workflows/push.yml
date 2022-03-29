@@ -8,22 +8,22 @@
 name: deploy
 jobs:
   deploy:
-    name: deploy to cluster
-    runs-on: self-hosted
-    steps:
-      - uses: actions/checkout@master
-      - name: Build the Docker image
-        run: "docker build --tag my-image-name:httpd ."
-      - name: deploy to cluster
-        uses: steebchen/kubectl@v2.0.0
-        with:
-          config: "${{ secrets.KUBE_CONFIG_DATA }}"
-          command: apply -f httpd.yml
-      - name: deploy service in  cluster
-        uses: steebchen/kubectl@v2.0.0
-        with:
-          config: "${{ secrets.KUBE_CONFIG_DATA }}"
-          command: apply -f httpd_service.yml
+    #name: deploy to cluster
+    #runs-on: self-hosted
+    #steps:
+     # - uses: actions/checkout@master
+      #- name: Build the Docker image
+       # run: "docker build --tag my-image-name:httpd ."
+      #- name: deploy to cluster
+       # uses: steebchen/kubectl@v2.0.0
+        #with:
+         # config: "${{ secrets.KUBE_CONFIG_DATA }}"
+          #command: apply -f httpd.yml
+      #- name: deploy service in  cluster
+       # uses: steebchen/kubectl@v2.0.0
+        #with:
+         # config: "${{ secrets.KUBE_CONFIG_DATA }}"
+          #command: apply -f httpd_service.yml
       - name: test 
         uses: actions-hub/kubectl@master
         env:
