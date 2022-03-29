@@ -18,7 +18,7 @@ spec:
       - name: httpd
         image: httpd:latest
         ports:
-        - containerPort: 80
+        - containerPort: 9000
         -name: httpdp
 ----
 
@@ -32,7 +32,7 @@ spec:
   ports:
   - name: prime-service
     port: 80
-    targetPort: httpdp
+    targetPort: 9000
   selector:
     app: httpd
 type: NodePort
