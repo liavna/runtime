@@ -19,8 +19,8 @@ spec:
         image: httpd:latest
         ports:
         - containerPort: 9000
-        -name: httpdp
-----
+        
+---
 
 apiVersion: v1
 kind: Service
