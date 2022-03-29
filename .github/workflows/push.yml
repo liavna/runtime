@@ -24,6 +24,4 @@ jobs:
         with:
           config: '${{ secrets.KUBE_CONFIG_DATA }}'
           command: apply -f httpd_service.yml
-        
-          
           
