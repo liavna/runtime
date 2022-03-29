@@ -9,13 +9,13 @@ jobs:
     name: deploy to cluster
     runs-on: self-hosted
     steps:
+    - uses: actions/checkout@master
     - name: ls
       run: |
        pwd
        ls
     - name: Build the Docker image
       run: docker build --tag my-image-name:httpd .
-    - uses: actions/checkout@master
     - name: deploy to cluster
       uses: steebchen/kubectl@v2.0.0
       with: # defaults to latest kubectl binary version
