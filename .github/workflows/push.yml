@@ -15,12 +15,12 @@ jobs:
       - name: Build the Docker image
         run: "docker build --tag my-image-name:httpd ."
       - name: deploy to cluster
-        uses: steebchen/kubectl@v1.1.0
+        uses: steebchen/kubectl@v2.0.0
         with:
           config: "${{ secrets.KUBE_CONFIG_DATA }}"
           command: apply -f httpd.yml
       - name: deploy service in  cluster
-        uses: steebchen/kubectl@v1.1.0
+        uses: steebchen/kubectl@v2.0.0
         with:
           config: "${{ secrets.KUBE_CONFIG_DATA }}"
           command: apply -f httpd_service.yml
