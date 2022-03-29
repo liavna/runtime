@@ -8,8 +8,8 @@ metadata:
 spec:
   ports:
     - name: http
-      port: 8080
-      targetPort: 9000
+      port: 80
+      targetPort: 80
   selector:
     app: httpd
   type: NodePort
