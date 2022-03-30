@@ -16,10 +16,13 @@ jobs:
       run: "docker build --tag my-image-name:httpd ."
     - name: deploy to cluster
       uses: steebchen/kubectl@v2.0.0
-      env:
-       KUBE_CONFIG: ${{secrets.KUBE_CONFIG_DATA  }}
       with:
-       args: apply -f httpd.yml
-
+        config: "${{ secrets.KUBE_CONFIG_DATA }}"
+        command: apply -f httpd.yml
+    - name: deploy service in  cluster
+      uses: steebchen/kubectl@v2.0.0
+      with:
+        config: "${{ secrets.KUBE_CONFIG_DATA }}"
+        command: apply -f httpd_service.yml
     
           
