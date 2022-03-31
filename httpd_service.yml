@@ -15,7 +15,6 @@ spec:
       nodePort: 30422
   selector:
     statefulset.kubernetes.io/pod-name: httpd-svc
-  clusterIP: 10.103.203.17
   type: NodePort
   sessionAffinity: None
   externalTrafficPolicy: Cluster
