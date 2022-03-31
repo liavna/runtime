@@ -12,7 +12,6 @@ spec:
       protocol: TCP
       port: 80
       targetPort: 80
-      nodePort: 30422
   selector:
     statefulset.kubernetes.io/pod-name: httpd-svc
   type: NodePort
