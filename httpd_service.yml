@@ -18,8 +18,6 @@ spec:
   sessionAffinity: None
   externalTrafficPolicy: Cluster
   publishNotReadyAddresses: true
-  ipFamilies:
-    - IPv4
   ipFamilyPolicy: SingleStack
 status:
   loadBalancer: {}
