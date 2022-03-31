@@ -5,11 +5,25 @@ metadata:
   namespace: user2
   labels:
     hpecp.hpe.com/hpecp-internal-gateway: "true"
+    kind: "KubeDirectorCluster"
 spec:
   ports:
-    - name: http
-      port: 8080
+    - name: http-svc
+      protocol: TCP
+      port: 80
       targetPort: 80
+      nodePort: 30422
   selector:
-    app: httpd
+    statefulset.kubernetes.io/pod-name: httpd-svc
+  clusterIP: 10.103.203.17
+  clusterIPs:
+    - 10.103.203.17
   type: NodePort
+  sessionAffinity: None
+  externalTrafficPolicy: Cluster
+  publishNotReadyAddresses: true
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+status:
+  loadBalancer: {}
