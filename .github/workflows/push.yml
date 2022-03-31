@@ -11,14 +11,14 @@ jobs:
     name: deploy to cluster
     runs-on: self-hosted
     steps:
-   - name: Cache multiple paths
-  uses: actions/cache@v2
-  with:
-    # This is the key right here
-    key: ${{ runner.os }}-SomeStringLiteral-${{ hashFiles('**/lockfiles') }}
-    path: |
-      ./some/file/path
-      ./some/other/file/path
+    - name: Cache multiple paths
+      uses: actions/cache@v2
+      with:
+        # This is the key right here
+        key: ${{ runner.os }}-SomeStringLiteral-${{ hashFiles('**/lockfiles') }}
+        path: |
+          ./some/file/path
+          ./some/other/file/path
 
     
           
