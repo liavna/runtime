@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: httpd
-        image: ezmeral-demo-app .
+        image: my-image-name:ezmeral-demo-app .
         ports:
         - containerPort: 80        
