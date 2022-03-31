@@ -11,15 +11,14 @@ jobs:
     name: deploy to cluster
     runs-on: self-hosted
     steps:
-    - uses: actions/checkout@master
-    - name: Build the Docker image
-      run: "docker build --tag my-image-name:httpd ."
-    - name: deploy to cluster
-      uses: actions-hub/kubectl@master
-      env:
-       KUBE_CONFIG: ${{secrets.KUBE_CONFIG_DATA  }}
-      with:
-       args: apply -f httpd.yml
+   - name: Cache multiple paths
+  uses: actions/cache@v2
+  with:
+    # This is the key right here
+    key: ${{ runner.os }}-SomeStringLiteral-${{ hashFiles('**/lockfiles') }}
+    path: |
+      ./some/file/path
+      ./some/other/file/path
 
     
           
