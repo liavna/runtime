@@ -10,7 +10,7 @@ spec:
   ports:
     - name: httpd-svc
       protocol: TCP
-      port: 80
+      port: 8080
       targetPort: 80
   selector:
     statefulset.kubernetes.io/pod-name: httpd-svc
