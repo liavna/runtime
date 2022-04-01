@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Build the Docker image
-      run: "docker build http://10.151.8.212:5000/reg1 -t myhttpd "
+      run: "docker build . -t myhttpd "
     - name: deploy to cluster
       uses: steebchen/kubectl@v2.0.0
       with:
