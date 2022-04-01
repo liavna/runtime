@@ -1,20 +1,2 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  namespace: user2
-  name: httpd
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: httpd
-  template:
-    metadata:
-      labels:
-        app: httpd
-    spec:
-      containers:
-      - name: httpd
-        image: 127.0.0.1:5000/myecp
-        ports:
-        - containerPort: 80        
+<p>Welcome To <span style="color: #008000;"><strong>HPE</strong> </span>runtime</p>
+<p>Web Server Version is :<span style="color: #008000;">1</span></p>
