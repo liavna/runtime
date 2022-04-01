@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: httpd
-        image: 127.0.0.1:5000/myhttpd:latest
+        image:  10.151.8.212:5000/myhttpd:latest
         ports:
         - containerPort: 80        
