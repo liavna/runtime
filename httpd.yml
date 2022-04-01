@@ -4,7 +4,7 @@ metadata:
   namespace: user2
   name: httpd
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: httpd
