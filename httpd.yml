@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: httpd
-        image: . myhhtpd
+        image: 10.151.8.212:5000:myhhtpd
         ports:
         - containerPort: 80        
