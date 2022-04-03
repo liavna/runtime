@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: httpd
-        image: 10.151.8.212:443/myhttpd:latest --insecure-skip-tls-verify=true
+        image: 10.151.8.212:443/myhttpd:latest
         ports:
         - containerPort: 80
