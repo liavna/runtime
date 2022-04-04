@@ -91,3 +91,10 @@ jobs:
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
         run: cosign sign ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.build-and-push.outputs.digest }}
+
+      - name: Create kube password for pulling the image
+        uses: steebchen/kubectl@v2.0.0
+        with:
+          config: "${{ secrets.KUBE_CONFIG_DATA }}"
+          command: apply secret docker-registry githubpull --docker-server=${{ env.REGISTRY }} --docker-username=${{ github.actor }} --docker-password=${{ secrets.GITHUB_TOKEN }} --docker-email=${{ github.actor }}
+
