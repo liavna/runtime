@@ -95,7 +95,7 @@ jobs:
         uses: steebchen/kubectl@v2.0.0
         with:
           config: "${{ secrets.KUBE_CONFIG_DATA }}"
-          command: get secrets docker-registry -o jsonpath='{.items[0].apiVersion}' 2>/dev/null
+          command: get secrets docker-registry -o jsonpath="{.items[0].apiVersion}" 2>/dev/null
           
       - name: Create kube password for pulling the image
         if: "!contains(steps.kube_pass.outputs.stdout, 'v1')"
