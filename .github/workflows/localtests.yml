@@ -23,4 +23,4 @@ jobs:
         id: hostss
         run: hostname
       - name: Output the commands
-        run: echo "${{ steps.hostss.outputs.stdout }}"
+        run: echo "${{ steps.hostss.outputs }}"
