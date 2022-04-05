@@ -16,6 +16,7 @@ spec:
       containers:
         - name: httpd-test
           image: ghcr.io/liavna/runtime:action_dev
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
       imagePullSecrets:
