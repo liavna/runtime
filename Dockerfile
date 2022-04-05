@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 FROM ubuntu:latest
 
 MAINTAINER Bartek Mis <bartek.mis@gmail.com>
@@ -45,3 +46,15 @@ EXPOSE 80
 
 # By default start up apache in the foreground, override with /bin/bash for interative.
 CMD /usr/sbin/apache2ctl -D FOREGROUND
+=======
+FROM ubuntu
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update
+RUN apt-get install apache2 -y
+RUN apt-get install apache2-utils -y
+RUN apt-get clean
+COPY ./public-html /var/www/html/index.html
+EXPOSE 80
+CMD ["apache2ctl","-D","FOREGROUND"]
+
+>>>>>>> 3bbc1b47ea0d5db988240f5555820166d603e270

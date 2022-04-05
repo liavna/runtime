@@ -1,37 +1,20 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: helloworld
-  labels:
-    app: helloworld
-spec:
-  ports:
-  - name: http
-    port: 8000
-    targetPort: 8000
-  selector:
-    app: helloworld
-  type: LoadBalancer
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: helloworld
-  labels:
-    app: helloworld
+  namespace: user2
+  name: httpd
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: helloworld
+      app: httpd
   template:
     metadata:
       labels:
-        app: helloworld
+        app: httpd
     spec:
       containers:
-      - name: helloworld
-        image: httpd:latest
-        imagePullPolicy: IfNotPresent
+      - name: httpd
+        image: 10.151.8.212:443/myhttpd:latest
         ports:
-        - containerPort: 8000
+        - containerPort: 80
