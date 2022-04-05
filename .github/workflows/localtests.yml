@@ -1,4 +1,4 @@
-name: local tests
+name: local_tests
 
 on:
   workflow_dispatch:
