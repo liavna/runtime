@@ -105,11 +105,11 @@ jobs:
         uses: steebchen/kubectl@v2.0.0
         with:
           config: "${{ secrets.KUBE_CONFIG_DATA }}"
-          command: get secrets docker-registry -o jsonpath='{.items[0].apiVersion}' 2>/dev/null
+          command: get secrets -A -o jsonpath='{.items[*].metadata.name}'
           
       - name: Create kube password for pulling the image
-        if: "!contains(steps.kube_pass.outputs.stdout, 'v1')"
+        if: "!contains(steps.kube_pass.outputs.stdout, 'my-docker-registry')"
         uses: steebchen/kubectl@v2.0.0
         with:
           config: "${{ secrets.KUBE_CONFIG_DATA }}"
-          command: create secret docker-registry githubpull --docker-server=${{ env.REGISTRY }} --docker-username=${{ github.actor }} --docker-password=${{ secrets.GITHUB_TOKEN }} --docker-email=${{ github.actor }}
+          command: create secret my-docker-registry githubpull --docker-server=${{ env.REGISTRY }} --docker-username=${{ github.actor }} --docker-password=${{ secrets.GITHUB_TOKEN }} --docker-email=${{ github.actor }}
