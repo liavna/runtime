@@ -8,7 +8,6 @@ name: Docker Build Push Apply
 on:
   push:
     branches: 
-      - action_dev
       - main
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
