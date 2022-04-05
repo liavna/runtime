@@ -98,7 +98,7 @@ jobs:
           command: get nodes -o wide
           
       - name: Echo kube output
-        run: "echo ${{ steps.kube_test.outputs.stdout}}"
+        run: "echo ${{ steps.kube_test}}"
           
       - name: Query kube registry password
         id: kube_pass_check
