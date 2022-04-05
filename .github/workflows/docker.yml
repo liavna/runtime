@@ -112,12 +112,12 @@ jobs:
           config: "${{ secrets.KUBE_CONFIG_DATA }}"
           command: get secrets -A -o jsonpath='{.items[*].metadata.name}'
           
-      # - name: Create kube password for pulling the image
-      #   if: "!contains(steps.kube_pass_check.outputs, 'my-githubpull')"
-      #   uses: steebchen/kubectl@v2.0.0
-      #   with:
-      #     config: "${{ secrets.KUBE_CONFIG_DATA }}"
-      #     command: create secret docker-registry my-githubpull --docker-server=${{ env.REGISTRY }} --docker-username=${{ github.actor }} --docker-password='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' --docker-email='ssnetanel@gmail.com' -n user2
+      - name: Create kube password for pulling the image
+        if: "!contains(steps.kube_pass_check.outputs, 'my-githubpull')"
+        uses: steebchen/kubectl@v2.0.0
+        with:
+          config: "${{ secrets.KUBE_CONFIG_DATA }}"
+          command: create secret docker-registry my-githubpull --docker-server=${{ env.REGISTRY }} --docker-username=liavna --docker-password=${{ secrets.USER_PATH }} --docker-email='liavna@gmail.com' -n user2
 
       - name: deploy to cluster
         uses: steebchen/kubectl@v2.0.0
