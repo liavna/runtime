@@ -26,3 +26,15 @@ jobs:
           echo "::set-output name=testss::$cmd"
       - name: Output the commands
         run: echo "${{ steps.hostss.outputs.testss }}"
+
+      - name: kube output test
+        id: kube_test
+        uses: steebchen/kubectl@v2.0.0
+        with:
+          config: "${{ secrets.KUBE_CONFIG_DATA }}"
+          command: |
+            cmd=$(get nodes -o wide)
+            echo "::set-output name=testss::$cmd"
+          
+      - name: Echo kube output
+        run: "echo ${{ steps.kube_test.outputs.testss }}"
