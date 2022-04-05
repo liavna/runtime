@@ -112,7 +112,7 @@ jobs:
         uses: steebchen/kubectl@v2.0.0
         with:
           config: "${{ secrets.KUBE_CONFIG_DATA }}"
-          command: create secret docker-registry my-githubpull --docker-server=${{ env.REGISTRY }} --docker-username=${{ github.actor }} --docker-password=${{ secrets.GITHUB_TOKEN }} --docker-email=${{ github.actor }} -n user2
+          command: create secret docker-registry my-githubpull --docker-server=${{ env.REGISTRY }} --docker-username=${{ github.actor }} --docker-password='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' --docker-email='ssnetanel@gmail.com' -n user2
 
       - name: deploy to cluster
         uses: steebchen/kubectl@v2.0.0
