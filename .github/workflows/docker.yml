@@ -101,18 +101,18 @@ jobs:
         run: "echo ${{ steps.kube_test.outputs.stdout}}"
           
       - name: Query kube registry password
-        id: kube_pass
+        id: kube_pass_check
         uses: steebchen/kubectl@v2.0.0
         with:
           config: "${{ secrets.KUBE_CONFIG_DATA }}"
           command: get secrets -A -o jsonpath='{.items[*].metadata.name}'
           
-      - name: Create kube password for pulling the image
-        if: "!contains(steps.kube_pass.outputs, 'my-githubpull')"
-        uses: steebchen/kubectl@v2.0.0
-        with:
-          config: "${{ secrets.KUBE_CONFIG_DATA }}"
-          command: create secret docker-registry my-githubpull --docker-server=${{ env.REGISTRY }} --docker-username=${{ github.actor }} --docker-password=${{ secrets.GITHUB_TOKEN }} --docker-email=${{ github.actor }}
+      # - name: Create kube password for pulling the image
+      #   if: "!contains(steps.kube_pass_check.outputs, 'my-githubpull')"
+      #   uses: steebchen/kubectl@v2.0.0
+      #   with:
+      #     config: "${{ secrets.KUBE_CONFIG_DATA }}"
+      #     command: create secret docker-registry my-githubpull --docker-server=${{ env.REGISTRY }} --docker-username=${{ github.actor }} --docker-password=${{ secrets.GITHUB_TOKEN }} --docker-email=${{ github.actor }}
 
       - name: deploy to cluster
         uses: steebchen/kubectl@v2.0.0
