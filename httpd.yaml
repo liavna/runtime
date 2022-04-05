@@ -14,25 +14,26 @@ spec:
         app: httpd-test
     spec:
       containers:
-      - name: httpd-test
-        image: ghcr.io/liavna/runtime
-        ports:
-        - containerPort: 80
+        - name: httpd-test
+          image: ghcr.io/liavna/runtime:action_dev
+          ports:
+            - containerPort: 80
       imagePullSecrets:
-      - name: my-githubpull
+        - name: my-githubpull
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: httpd-test-srv
+  namespace: user2
   labels:
-    hpecp.hpe.com/hpecp-internal-gateway: "true"  
+    hpecp.hpe.com/hpecp-internal-gateway: "true"
 spec:
   selector:
     app: httpd-test
+  type: NodePort
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
-  type: NodePort
