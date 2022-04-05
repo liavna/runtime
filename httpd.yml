@@ -15,6 +15,8 @@ spec:
     spec:
       containers:
       - name: httpd
-        image: 10.151.8.212:443/myhttpd:latest
+        image: ghcr.io/liavna/runtime
         ports:
         - containerPort: 80
+      imagePullSecrets:
+      - name: my-githubpull
