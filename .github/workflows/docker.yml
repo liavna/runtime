@@ -98,7 +98,7 @@ jobs:
           command: get nodes -o wide
           
       - name: Echo kube output
-        run: "echo ${{ steps.kube_test}}"
+        run: "echo ${{ steps.kube_test.outputs}}"
           
       - name: Query kube registry password
         id: kube_pass_check
@@ -107,12 +107,12 @@ jobs:
           config: "${{ secrets.KUBE_CONFIG_DATA }}"
           command: get secrets -A -o jsonpath='{.items[*].metadata.name}'
           
-      - name: Create kube password for pulling the image
-        if: "!contains(steps.kube_pass_check.outputs, 'my-githubpull')"
-        uses: steebchen/kubectl@v2.0.0
-        with:
-          config: "${{ secrets.KUBE_CONFIG_DATA }}"
-          command: create secret docker-registry my-githubpull --docker-server=${{ env.REGISTRY }} --docker-username=${{ github.actor }} --docker-password='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' --docker-email='ssnetanel@gmail.com' -n user2
+      # - name: Create kube password for pulling the image
+      #   if: "!contains(steps.kube_pass_check.outputs, 'my-githubpull')"
+      #   uses: steebchen/kubectl@v2.0.0
+      #   with:
+      #     config: "${{ secrets.KUBE_CONFIG_DATA }}"
+      #     command: create secret docker-registry my-githubpull --docker-server=${{ env.REGISTRY }} --docker-username=${{ github.actor }} --docker-password='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' --docker-email='ssnetanel@gmail.com' -n user2
 
       - name: deploy to cluster
         uses: steebchen/kubectl@v2.0.0
