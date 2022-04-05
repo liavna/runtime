@@ -6,8 +6,6 @@ name: Docker
 # documentation.
 
 on:
-  schedule:
-    - cron: '22 3 * * *'
   push:
     branches: [ action_dev ]
     # Publish semver tags as releases.
@@ -91,8 +89,16 @@ jobs:
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
         run: cosign sign ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.build-and-push.outputs.digest }}
-
+        
+      - name: Query kube registry password
+        id: kube_pass
+        uses: steebchen/kubectl@v2.0.0
+        with:
+          config: "${{ secrets.KUBE_CONFIG_DATA }}"
+          command: get secrets docker-registry -o jsonpath='{.items[0].apiVersion}' 2>/dev/null
+          
       - name: Create kube password for pulling the image
+        if: "!contains(kube_pass.outputs.stdout, v1)"
         uses: steebchen/kubectl@v2.0.0
         with:
           config: "${{ secrets.KUBE_CONFIG_DATA }}"
