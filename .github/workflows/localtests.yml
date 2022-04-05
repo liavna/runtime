@@ -1,0 +1,32 @@
+name: local tests
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+on:
+  workflow_dispatch:
+
+env:
+  # Use docker.io for Docker Hub if empty
+  REGISTRY: ghcr.io
+  # github.repository as <account>/<repo>
+  IMAGE_NAME: ${{ github.repository }}
+
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+      # - name: Checkout repository
+      #   uses: actions/checkout@v3
+
+      - name: Run some commands
+        id: hostss
+        run: hostname
+
+      - name: Output the commands
+        run: echo "${{ steps.hostss.outputs.stdout }}"
