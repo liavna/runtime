@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 FROM ubuntu:latest
 
 MAINTAINER Bartek Mis <bartek.mis@gmail.com>
@@ -58,3 +59,7 @@ EXPOSE 80
 CMD ["apache2ctl","-D","FOREGROUND"]
 
 >>>>>>> 3bbc1b47ea0d5db988240f5555820166d603e270
+=======
+FROM httpd:2.4
+COPY ./public.html /usr/local/apache2/htdocs/index.html
+>>>>>>> efde28288699dcdb2b1f4766592b8af4bfbf52cb
