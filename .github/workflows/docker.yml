@@ -108,7 +108,7 @@ jobs:
           command: get secrets -A -o jsonpath='{.items[*].metadata.name}'
           
       - name: Create kube password for pulling the image
-        if: "!contains(steps.kube_pass.outputs.stdout, 'my-githubpull')"
+        if: "!contains(steps.kube_pass.outputs, 'my-githubpull')"
         uses: steebchen/kubectl@v2.0.0
         with:
           config: "${{ secrets.KUBE_CONFIG_DATA }}"
