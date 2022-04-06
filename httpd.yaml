@@ -2,20 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: user2
-  name: httpd-test
+  name: httpd-dev
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: httpd-test
+      app: httpd-dev
   template:
     metadata:
       labels:
-        app: httpd-test
+        app: httpd-dev
     spec:
       containers:
-        - name: httpd-test
-          image: ghcr.io/liavna/runtime:main
+        - name: httpd-dev
+          image: ghcr.io/liavna/runtime:dev
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -26,13 +26,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: httpd-test-srv
+  name: httpd-dev-srv
   namespace: user2
   labels:
     hpecp.hpe.com/hpecp-internal-gateway: "true"
 spec:
   selector:
-    app: httpd-test
+    app: httpd-dev
   type: NodePort
   ports:
     - protocol: TCP
