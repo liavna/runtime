@@ -7,11 +7,11 @@ name: Docker Build Push Apply
 
 on:
   push:
-    branches: [ main ]
+    branches: [ dev ]
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
   pull_request:
-    branches: [ main ]
+    branches: [ dev ]
 
 
 env:
@@ -96,38 +96,38 @@ jobs:
         # against the sigstore community Fulcio instance.
         run: cosign sign ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.build-and-push.outputs.digest }}
 
-      - name: kube output test
-        id: kube_test
-        uses: steebchen/kubectl@v2.0.0
-        with:
-          config: "${{ secrets.KUBE_CONFIG_DATA }}"
-          command: get nodes -o wide
-          
-      - name: Echo kube output
-        run: "echo ${{ steps.kube_test.outputs.stdout }}"
-          
-      - name: Query kube registry password
-        id: kube_pass_check
-        uses: steebchen/kubectl@v2.0.0
-        with:
-          config: "${{ secrets.KUBE_CONFIG_DATA }}"
-          command: get secrets -A -o jsonpath='{.items[*].metadata.name}'
-          
-#       - name: Create kube password for pulling the image
-#         if: "!contains(steps.kube_pass_check.outputs, 'my-githubpull')"
+#       - name: kube output test
+#         id: kube_test
 #         uses: steebchen/kubectl@v2.0.0
 #         with:
 #           config: "${{ secrets.KUBE_CONFIG_DATA }}"
-#           command: create secret docker-registry my-githubpull --docker-server=${{ env.REGISTRY }} --docker-username=liavna --docker-password=${{ secrets.USER_PATH }} --docker-email='liavna@gmail.com' -n user2
+#           command: get nodes -o wide
+          
+#       - name: Echo kube output
+#         run: "echo ${{ steps.kube_test.outputs.stdout }}"
+          
+#       - name: Query kube registry password
+#         id: kube_pass_check
+#         uses: steebchen/kubectl@v2.0.0
+#         with:
+#           config: "${{ secrets.KUBE_CONFIG_DATA }}"
+#           command: get secrets -A -o jsonpath='{.items[*].metadata.name}'
+          
+# #       - name: Create kube password for pulling the image
+# #         if: "!contains(steps.kube_pass_check.outputs, 'my-githubpull')"
+# #         uses: steebchen/kubectl@v2.0.0
+# #         with:
+# #           config: "${{ secrets.KUBE_CONFIG_DATA }}"
+# #           command: create secret docker-registry my-githubpull --docker-server=${{ env.REGISTRY }} --docker-username=liavna --docker-password=${{ secrets.USER_PATH }} --docker-email='liavna@gmail.com' -n user2
 
-      - name: deploy to cluster
-        uses: steebchen/kubectl@v2.0.0
-        with:
-          config: "${{ secrets.KUBE_CONFIG_DATA }}"
-          command: apply -f httpd.yaml
+#       - name: deploy to cluster
+#         uses: steebchen/kubectl@v2.0.0
+#         with:
+#           config: "${{ secrets.KUBE_CONFIG_DATA }}"
+#           command: apply -f httpd.yaml
 
-      - name: deploy to cluster
-        uses: steebchen/kubectl@v2.0.0
-        with: # defaults to latest kubectl binary version
-          config: ${{ secrets.KUBE_CONFIG_DATA }}
-          command: rollout restart deployment -n user2 httpd-test
+#       - name: deploy to cluster
+#         uses: steebchen/kubectl@v2.0.0
+#         with: # defaults to latest kubectl binary version
+#           config: ${{ secrets.KUBE_CONFIG_DATA }}
+#           command: rollout restart deployment -n user2 httpd-test

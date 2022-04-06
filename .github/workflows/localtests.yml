@@ -1,0 +1,40 @@
+name: local_tests
+
+on:
+  workflow_dispatch:
+  push:
+    branches: 
+      - dev
+    # Publish semver tags as releases.
+    tags: [ 'v*.*.*' ]
+  pull_request:
+    branches: [ dev ]
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      # - name: Checkout repository
+      #   uses: actions/checkout@v3
+      - name: Run some commands
+        id: hostss
+        run: | 
+          cmd=$(hostname)
+          echo "::set-output name=testss::$cmd"
+      - name: Output the commands
+        run: echo "${{ steps.hostss.outputs.testss }}"
+
+      - name: kube output test
+        id: kube_test
+        uses: steebchen/kubectl@v2.0.0
+        with:
+          config: "${{ secrets.KUBE_CONFIG_DATA }}"
+          command: |
+            cmd=$(get nodes -o wide)
+            echo "::set-output name=testss::$cmd"
+          
+      - name: Echo kube output
+        run: "echo ${{ steps.kube_test.outputs.testss }}"
