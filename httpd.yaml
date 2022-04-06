@@ -25,7 +25,6 @@ spec:
 ---
 apiVersion: v1
 kind: Service
--name: httpd-svc
 metadata:
   name: httpd-test-srv
   namespace: user2
