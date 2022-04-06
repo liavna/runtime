@@ -125,3 +125,8 @@ jobs:
         with:
           config: "${{ secrets.KUBE_CONFIG_DATA }}"
           command: apply -f httpd.yaml
+      - name: deploy to cluster
+        uses: steebchen/kubectl@v2.0.0
+        with: # defaults to latest kubectl binary version
+         config: ${{ secrets.KUBE_CONFIG_DATA }}
+         command: set image --record deployment/httpd-test container=${{ github.repository }}:${{ github.sha }}
