@@ -4,7 +4,7 @@ metadata:
   namespace: user2
   name: httpd-test
 spec:
-  replicas: 1
+  replicas: 10
   selector:
     matchLabels:
       app: httpd-test
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: httpd-test
-          image: ghcr.io/liavna/runtime:action_dev
+          image: ghcr.io/liavna/runtime:main
           imagePullPolicy: Always
           ports:
             - containerPort: 80
