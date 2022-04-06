@@ -7,12 +7,12 @@ name: Docker Build Push Apply
 
 on:
   push:
-    branches: 
-      - main
+    branches: [ main ]
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ main ]
+
 
 env:
   # Use docker.io for Docker Hub if empty
@@ -125,3 +125,9 @@ jobs:
         with:
           config: "${{ secrets.KUBE_CONFIG_DATA }}"
           command: apply -f httpd.yaml
+
+      - name: deploy to cluster
+        uses: steebchen/kubectl@v2.0.0
+        with: # defaults to latest kubectl binary version
+          config: ${{ secrets.KUBE_CONFIG_DATA }}
+          command: rollout restart deployment -n user2 httpd-test
